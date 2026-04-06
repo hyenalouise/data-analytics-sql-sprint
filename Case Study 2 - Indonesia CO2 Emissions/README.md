@@ -10,7 +10,7 @@
 
 ## Business Task
 
-Indonesia is not Southeast Asia's highest per-capita CO₂ emitter — but it is the region's **largest absolute driver of emissions** due to scale, rapid economic growth, and deep coal dependency. This analysis uses SQL to quantify that claim: how fast are emissions growing, what's driving them, and how does Indonesia compare to its neighbours?
+Indonesia is not Southeast Asia's highest per-capita CO₂ emitter but it is the region's **largest absolute driver of emissions** due to scale, rapid economic growth, and deep coal dependency. This analysis uses SQL to quantify that claim: how fast are emissions growing, what's driving them, and how does Indonesia compare to its neighbours?
 
 This analysis extends the findings of my [Southeast Asia CO₂ presentation](https://github.com/chimkeninasal/southeast-asia-co2-analysis) using SQL instead of Power BI.
 
@@ -90,7 +90,7 @@ ORDER BY decade;
 
 #### Steps:
 
-- `(year / 10) * 10` is integer division — it floors the year to the decade (e.g. 2019 → 2010, 1987 → 1980). This creates a decade grouping without needing a date function.
+- `(year / 10) * 10` is integer division, it floors the year to the decade (e.g. 2019 → 2010, 1987 → 1980). This creates a decade grouping without needing a date function.
 - `AVG(co2)` gives the typical emissions level for the decade; `MAX(co2)` shows the peak within it.
 - `GROUP BY decade` aggregates all years in the same 10-year bucket.
 
@@ -168,7 +168,7 @@ ORDER BY co2_mt DESC;
 
 #### Steps:
 
-- Each fuel type is stored in a separate column in the OWID dataset — `UNION ALL` stacks them into rows for clean comparison.
+- Each fuel type is stored in a separate column in the OWID dataset `UNION ALL` stacks them into rows for clean comparison.
 - All five queries reference the same filter (`Country = 'Indonesia' AND year = 2022`) to ensure they're pulling from the same base record.
 - `ORDER BY co2_mt DESC` ranks by contribution size.
 
@@ -182,7 +182,7 @@ ORDER BY co2_mt DESC;
 | Cement | 26.84 |
 | Flaring | 3.16 |
 
-- **Coal accounts for 54.9% of all Indonesia's emissions** in 2022 — up from 34.2% in 2010.
+- **Coal accounts for 54.9% of all Indonesia's emissions** in 2022 up from 34.2% in 2010.
 - The coal figure alone (404 Mt) is larger than the total CO₂ of most Southeast Asian countries.
 - Oil has remained relatively flat at ~200–220 Mt since 2010. The growth is almost entirely coal.
 
@@ -204,7 +204,7 @@ ORDER BY total_co2_mt DESC;
 
 #### Steps:
 
-- Use `IN()` with a defined list of Southeast Asian countries — note these must match the exact country name strings in the dataset.
+- Use `IN()` with a defined list of Southeast Asian countries, note these must match the exact country name strings in the dataset.
 - `co2_per_capita` is in tonnes per person; `share_global_co2` is a percentage of global total.
 - Comparing all three columns side by side reveals the difference between absolute and per-capita narratives.
 
@@ -334,7 +334,7 @@ ORDER BY year;
 | 2020 | 608.22 | 1.73% |
 | 2022 | 737.07 | 1.98% |
 
-- Indonesia's global share has **nearly tripled since 1990** — from 0.68% to 1.98%.
+- Indonesia's global share has **nearly tripled since 1990** from 0.68% to 1.98%.
 - It is now approaching 2% of all global CO₂ — a significant position for a country that is not the world's largest economy.
 - The acceleration post-2015 is visible: from 1.52% to 1.98% in just 7 years.
 
@@ -412,5 +412,5 @@ ORDER BY avg_co2_per_capita_t DESC;
 | Philippines | 0.98 | 0.74 | 1.29 |
 
 - Indonesia and Vietnam have **identical average per-capita emissions** (1.85 t/person) over 2000–2022.
-- Malaysia emits **4× more per person** than Indonesia — yet Indonesia generates 2.5× Malaysia's absolute total due to its population of 280M.
+- Malaysia emits **4× more per person** than Indonesia yet Indonesia generates 2.5× Malaysia's absolute total due to its population of 280M.
 - Indonesia's emissions problem is one of **population scale**, not individual consumption level. Clean energy infrastructure benefits all 280M people simultaneously.
